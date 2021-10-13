@@ -10,7 +10,7 @@ type Props = {};
 
 
 const Homepage = (props: Props) => {
-  const {data, isFetching} = useGetCryptosQuery({});
+  const {data: fetchedCryptos, isFetching} = useGetCryptosQuery({});
   const [stats, setStats] = useState<Pick<Stats, 'total' | 'totalMarketCap' | 'totalExchanges' | 'totalMarkets' | 'total24hVolume'>>({
     totalMarketCap: 0,
     total: 0,
@@ -20,12 +20,12 @@ const Homepage = (props: Props) => {
   });
 
   useEffect(() => {
-    if (data?.data?.stats) {
+    if (fetchedCryptos?.data?.stats) {
       setStats({
-        ...data.data.stats
+        ...fetchedCryptos.data.stats
       })
     }
-  }, [data])
+  }, [fetchedCryptos])
 
   if (isFetching) return <div>'loading...'</div>;
 

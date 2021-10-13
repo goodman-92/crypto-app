@@ -14,10 +14,10 @@ const Navbar = (props: any) => {
         </Typography.Title>
       </div>
       <Menu theme="dark">
-        <Menu.Item icon={<HomeOutlined/>}><Link to={Paths.HomPage}>Home</Link></Menu.Item>
-        <Menu.Item icon={<FundOutlined/>}><Link to={Paths.Cryptocurrencies}>Crypto currencies</Link></Menu.Item>
-        <Menu.Item icon={<MoneyCollectOutlined/>}><Link to={Paths.Exchanges}>Exchanges</Link></Menu.Item>
-        <Menu.Item icon={<BulbOutlined/>}><Link to={Paths.News}>News</Link></Menu.Item>
+        <Menu.Item key={Paths.HomPage} icon={<HomeOutlined/>}><Link to={Paths.HomPage}>Home</Link></Menu.Item>
+        <Menu.Item key={Paths.Cryptocurrencies} icon={<FundOutlined/>}><Link to={Paths.Cryptocurrencies}>Crypto currencies</Link></Menu.Item>
+        <Menu.Item key={Paths.Exchanges} icon={<MoneyCollectOutlined/>}><Link to={Paths.Exchanges}>Exchanges</Link></Menu.Item>
+        <Menu.Item key={Paths.News} icon={<BulbOutlined/>}><Link to={Paths.News}>News</Link></Menu.Item>
       </Menu>
     </div>
   )
