@@ -9,7 +9,7 @@ const baseUrl = 'https://coinranking1.p.rapidapi.com'
 
 const createRequest = (url: string) => ({url, headers: cryptoApiHeader});
 
-interface Coin {
+export interface Coin {
   id: number,
   uuid: string,
   slug: string,
@@ -21,6 +21,8 @@ interface Coin {
   firstSeen: number,
   history: String[],
   iconType: string,
+  iconUrl: string,
+  change: number,
   links: { name: string, type: string, url: string }[],
   listedAt: number,
   marketCap: number,
@@ -66,9 +68,8 @@ export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({ baseUrl}),
   endpoints: (builder) => ({
-    getCryptos: builder.query<CoinsResponse, void>({
-      query: () => createRequest('/coins')
-      
+    getCryptos: builder.query<CoinsResponse, {count?: number}>({
+      query: ({count = 100 }) => createRequest(`/coins?limit=${count}`)
     })
   })
 })

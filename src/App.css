@@ -35,13 +35,13 @@ a:hover{
 }
 .routes{
     padding: 20px;
+    min-height: 86.4vh;
 }
 .nav-container{
     position: fixed;
     left: 0;
     margin: 10px;
     height: 100vh;
-    margin: 0px;
     background-color: rgb(0, 21, 41);
 }
 

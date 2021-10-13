@@ -21,7 +21,7 @@ const App = (props: Props) => {
                <Route exact path={Paths.HomPage}><Homepage/></Route>
                <Route exact path={Paths.Exchanges}><Exchanges/></Route>
                <Route exact path={Paths.Cryptocurrencies}><Cryptocurrencies/></Route>
-               <Route exact path={Paths.CryptoDetails}><CryptoDetails/></Route>
+               <Route exact path={`${Paths.CryptoDetails}/:id`}><CryptoDetails/></Route>
                <Route exact path={Paths.News}><News/></Route>
              </Switch>
            </div>

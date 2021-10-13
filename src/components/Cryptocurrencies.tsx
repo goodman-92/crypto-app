@@ -1,14 +1,56 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {Coin, useGetCryptosQuery} from "../services/cryptoApi";
+import {Card, Col, Input, Row} from "antd";
+import {Paths} from "../App.type";
+import {Link} from 'react-router-dom';
+import millify from "millify";
 
 type Props = {
   simplified?: boolean
 };
 
-const Cryptocurrencies = ({ simplified = false}: Props) => {
+const Cryptocurrencies = ({simplified = false}: Props) => {
+  const count = simplified ? 10 : 100;
+  const {data: fetchData, isFetching} = useGetCryptosQuery({count});
+  const [cryptos, setCryptos] = useState<Coin[]>();
+  const [searchWord, setSearchWord] = useState("");
+
+  useEffect(() => {
+    const filteredData = fetchData?.data?.coins.filter(({name}) => name.toLocaleLowerCase().includes(searchWord.toLocaleLowerCase()))
+    setCryptos(filteredData);
+
+  }, [fetchData, searchWord]);
+
+  if (isFetching || !cryptos) return <div>"Loading ..."</div>;
+
+  const handleSearchWord = (e: React.FormEvent<HTMLInputElement>) => setSearchWord(e.currentTarget.value);
+
   return (
-    <div>
-      Cryptocurrencies page
-    </div>
+    <>
+      {
+        !simplified &&
+        <div className="search-crypto">
+					<Input placeholder="Search Cryptocurrency" onChange={handleSearchWord}/>
+				</div>
+      }
+      <Row gutter={[32, 32]} className='crypto-card-container'>
+        {
+          cryptos.map((coin) => (
+            <Col xs={24} sm={12} lg={6} className='crypto-card' key={coin.id}>
+              <Link to={Paths.CryptoDetails + `/${coin.id}`}>
+                <Card title={`${coin.rank}. ${coin.name}`}
+                      hoverable
+                      extra={<img className='crypto-image' src={coin.iconUrl} alt={coin.name}/>}>
+                  <p>Price: {millify(Number(coin.price))}</p>
+                  <p>Market Cap: {millify(Number(coin.marketCap))}</p>
+                  <p>Daily Change: {millify(Number(coin.change))}%</p>
+                </Card>
+              </Link>
+            </Col>
+          ))
+        }
+      </Row>
+    </>
   );
 };
 
