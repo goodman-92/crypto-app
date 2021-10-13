@@ -63,7 +63,6 @@ interface CoinsResponse {
   data: Coins
 }
 
-
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({ baseUrl}),
