@@ -1,8 +1,10 @@
 import React from 'react';
 
-type Props = {};
+type Props = {
+  simplified?: boolean
+};
 
-const News = (props: Props) => {
+const News = ({simplified = false}: Props) => {
   return (
     <div>
       News
