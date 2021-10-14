@@ -14,7 +14,7 @@ interface News {
   name: string,
   url: string,
   description: string
-  images: {
+  image: {
     _type: string,
     thumbnail: {
       _type: string,
@@ -26,7 +26,7 @@ interface News {
   about: { _type: string, readLink: string, name: string }[],
   datePublished: string,
   category: string,
-  provider: object[],
+  provider: { name: string, image: { thumbnail: { contentUrl: string } } }[],
   _type: string
 }
 
