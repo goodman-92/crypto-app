@@ -5,19 +5,26 @@ export enum Paths {
   HomePage = '/',
   Exchanges = '/exchanges',
   Cryptocurrencies = '/cryptocurrencies',
-  CryptoDetails = '/crypto/:id', // /:id 를 붙여줘야한다
+  CryptoDetails = '/crypto/:coinId', // /:id 를 붙여줘야한다
   News = '/news'
 }
 
 export const makeLinkTo = (path: Paths, routeParam?: string) => {
+  let isDetails = false;
 
   switch (path) {
     case Paths.CryptoDetails: {
-      if (!routeParam) throw Error('id를 입력하세요')
+      if (!routeParam) throw Error('id를 입력하세요');
+      isDetails = true;
+      break;
     }
   }
-
-  return routeParam ? path.split('/').splice(2, 1).join(routeParam) : path;
+  if (isDetails){
+    const formatPath = path.split('/').splice(1,1).join()
+    return `/${formatPath}/${routeParam}`;
+  }
+  
+  return isDetails ? path.split('/').join() : path;
 };
 
 type Props = {};

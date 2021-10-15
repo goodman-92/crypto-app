@@ -31,8 +31,8 @@ export interface Coin {
   penalty: boolean,
   price: string,
   rank: number,
-  socials: {name: string, type: string, url: string }[],
-  totalSupply: XPathNSResolver,
+  socials: { name: string, type: string, url: string }[],
+  totalSupply: number,
   type: string,
   volume: number
   websiteUrl: string
@@ -63,16 +63,55 @@ interface CoinsResponse {
   data: Coins
 }
 
+export interface CoinDetail extends Coin {
+  allTimeHigh: {
+    price: number
+  },
+  approvedSupply: boolean,
+  circulatingSupply: number
+}
+
+type Response = {
+  data: any
+  status: string
+}
+
+interface CoinResponse {
+  status: string,
+  data: {
+    base: {
+      sign: string,
+      symbol: string
+    },
+    coin: CoinDetail
+  }
+}
+
+interface CoinHistoryResponse extends Response {
+  data: {
+    change: number,
+    history: { price: string, timestamp: number }[]
+  }
+}
+
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
-  baseQuery: fetchBaseQuery({ baseUrl}),
+  baseQuery: fetchBaseQuery({baseUrl}),
   endpoints: (builder) => ({
-    getCryptos: builder.query<CoinsResponse, {count?: number}>({
-      query: ({count = 100 }) => createRequest(`/coins?limit=${count}`)
+    getCryptos: builder.query<CoinsResponse, { count?: number }>({
+      query: ({count = 100}) => createRequest(`/coins?limit=${count}`)
+    }),
+    getCryptosDetails: builder.query<CoinResponse, { coinId?: string }>({
+      query: ({coinId}) => createRequest(`/coin/${coinId}`),
+    }),
+    getCryptoHistory: builder.query<CoinHistoryResponse, { coinId?: string, timePeriod: string }>({
+      query: ({coinId, timePeriod}) => createRequest(`/coin/${coinId}/history/${timePeriod}`)
     })
   })
-})
+});
 
 export const {
-  useGetCryptosQuery
+  useGetCryptosQuery,
+  useGetCryptosDetailsQuery,
+  useGetCryptoHistoryQuery
 } = cryptoApi
