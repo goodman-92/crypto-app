@@ -1,6 +1,6 @@
 import {Footer, Navbar} from './components';
 import {Layout} from "antd";
-import Routes from "./config/Routes";
+import Routes from "./config/routes";
 import './App.css'
 
 const App = () => {

@@ -3,8 +3,8 @@ import {Col, Row, Statistic, Typography} from "antd";
 import {Stats, useGetCryptosQuery} from "../services/cryptoApi";
 import millify from "millify";
 import { Link } from 'react-router-dom';
-import {Paths} from "../App.type";
 import {Cryptocurrencies, News} from "./index";
+import {Paths} from "../config/routes";
 
 type Props = {};
 

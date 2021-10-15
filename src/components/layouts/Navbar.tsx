@@ -2,7 +2,7 @@ import {Avatar, Menu, Typography} from "antd";
 import {Link} from 'react-router-dom';
 import icon from '../../images/cryptocurrency.png';
 import {BulbOutlined, FundOutlined, HomeOutlined, MoneyCollectOutlined} from "@ant-design/icons";
-import {Paths} from "../../App.type";
+import {Paths} from "../../config/routes";
 
 const Navbar = (props: any) => {
   return (

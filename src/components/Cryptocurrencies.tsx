@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Coin, useGetCryptosQuery} from "../services/cryptoApi";
 import {Card, Col, Input, Row} from "antd";
-import {Paths} from "../App.type";
 import {Link} from 'react-router-dom';
 import millify from "millify";
+import {Paths} from "../config/routes";
 
 type Props = {
   simplified?: boolean

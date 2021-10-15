@@ -1,13 +1,9 @@
 import React from 'react';
 import {Space, Typography} from "antd";
 import {Link} from "react-router-dom";
-import {Paths} from "../../App.type";
+import {Paths} from "../../config/routes";
 
-type Props = {
-
-};
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <div className="footer">
       <Typography.Title level={5} style={{color: 'white', textAlign: 'center'}}>

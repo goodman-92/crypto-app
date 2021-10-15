@@ -1,12 +1,17 @@
 import {Route, Switch} from "react-router-dom";
-import {Paths} from "../App.type";
 import {Cryptocurrencies, CryptoDetails, Exchanges, Homepage, News} from "../components";
 
-import React from 'react';
+export enum Paths {
+  HomPage = '/',
+  Exchanges  = '/exchanges',
+  Cryptocurrencies = '/cryptocurrencies',
+  CryptoDetails = '/crypto', // /:id 를 붙여줘야한다
+  News = '/news'
+}
 
 type Props = {};
 
-const Routes = (props: Props) => {
+const routes = (props: Props) => {
   return (
     <div className="routes">
       <Switch>
@@ -20,4 +25,4 @@ const Routes = (props: Props) => {
   );
 };
 
-export default Routes
+export default routes
