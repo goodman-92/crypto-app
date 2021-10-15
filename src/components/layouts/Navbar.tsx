@@ -2,7 +2,7 @@ import {Avatar, Menu, Typography} from "antd";
 import {Link} from 'react-router-dom';
 import icon from '../../images/cryptocurrency.png';
 import {BulbOutlined, FundOutlined, HomeOutlined, MoneyCollectOutlined} from "@ant-design/icons";
-import {Paths} from "../../config/routes";
+import {makeLinkTo, Paths} from "../../config/routes";
 
 const Navbar = (props: any) => {
   return (
@@ -14,10 +14,10 @@ const Navbar = (props: any) => {
         </Typography.Title>
       </div>
       <Menu theme="dark">
-        <Menu.Item key={Paths.HomPage} icon={<HomeOutlined/>}><Link to={Paths.HomPage}>Home</Link></Menu.Item>
-        <Menu.Item key={Paths.Cryptocurrencies} icon={<FundOutlined/>}><Link to={Paths.Cryptocurrencies}>Crypto currencies</Link></Menu.Item>
-        <Menu.Item key={Paths.Exchanges} icon={<MoneyCollectOutlined/>}><Link to={Paths.Exchanges}>Exchanges</Link></Menu.Item>
-        <Menu.Item key={Paths.News} icon={<BulbOutlined/>}><Link to={Paths.News}>News</Link></Menu.Item>
+        <Menu.Item key={Paths.HomePage} icon={<HomeOutlined/>}><Link to={makeLinkTo(Paths.HomePage)}>Home</Link></Menu.Item>
+        <Menu.Item key={Paths.Cryptocurrencies} icon={<FundOutlined/>}><Link to={makeLinkTo(Paths.Cryptocurrencies)}>Crypto currencies</Link></Menu.Item>
+        <Menu.Item key={Paths.Exchanges} icon={<MoneyCollectOutlined/>}><Link to={makeLinkTo(Paths.Exchanges)}>Exchanges</Link></Menu.Item>
+        <Menu.Item key={Paths.News} icon={<BulbOutlined/>}><Link to={makeLinkTo(Paths.News)}>News</Link></Menu.Item>
       </Menu>
     </div>
   )

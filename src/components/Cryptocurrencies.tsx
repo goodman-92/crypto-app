@@ -3,7 +3,7 @@ import {Coin, useGetCryptosQuery} from "../services/cryptoApi";
 import {Card, Col, Input, Row} from "antd";
 import {Link} from 'react-router-dom';
 import millify from "millify";
-import {Paths} from "../config/routes";
+import {makeLinkTo, Paths} from "../config/routes";
 
 type Props = {
   simplified?: boolean
@@ -37,7 +37,7 @@ const Cryptocurrencies = ({simplified = false}: Props) => {
         {
           cryptos.map((coin) => (
             <Col xs={24} sm={12} lg={6} className='crypto-card' key={coin.id}>
-              <Link to={Paths.CryptoDetails + `/${coin.id}`}>
+              <Link to={makeLinkTo(Paths.CryptoDetails, coin.id.toString())}>
                 <Card title={`${coin.rank}. ${coin.name}`}
                       hoverable
                       extra={<img className='crypto-image' src={coin.iconUrl} alt={coin.name}/>}>

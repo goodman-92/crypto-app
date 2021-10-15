@@ -4,10 +4,9 @@ import {Stats, useGetCryptosQuery} from "../services/cryptoApi";
 import millify from "millify";
 import { Link } from 'react-router-dom';
 import {Cryptocurrencies, News} from "./index";
-import {Paths} from "../config/routes";
+import {makeLinkTo, Paths} from "../config/routes";
 
 type Props = {};
-
 
 const Homepage = (props: Props) => {
   const {data: fetchedCryptos, isFetching} = useGetCryptosQuery({});
@@ -44,12 +43,12 @@ const Homepage = (props: Props) => {
       </Row>
       <div className="home-heading-container">
         <Typography.Title level={2} className="home-title">Top 10 Cryptocurrencies in world</Typography.Title>
-        <Typography.Title level={3} className="show-more"><Link to={Paths.Cryptocurrencies}>Show More</Link> </Typography.Title>
+        <Typography.Title level={3} className="show-more"><Link to={makeLinkTo(Paths.Cryptocurrencies)}>Show More</Link> </Typography.Title>
       </div>
       <Cryptocurrencies simplified/>
       <div className="home-heading-container">
         <Typography.Title level={2} className="home-title">Latest Crypto News</Typography.Title>
-        <Typography.Title level={3} className="show-more"><Link to={Paths.News}>Show More</Link> </Typography.Title>
+        <Typography.Title level={3} className="show-more"><Link to={makeLinkTo(Paths.News)}>Show More</Link> </Typography.Title>
       </div>
       <News simplified/>
 

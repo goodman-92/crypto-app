@@ -1,7 +1,7 @@
 import React from 'react';
 import {Space, Typography} from "antd";
 import {Link} from "react-router-dom";
-import {Paths} from "../../config/routes";
+import {makeLinkTo, Paths} from "../../config/routes";
 
 const Footer = () => {
   return (
@@ -11,9 +11,9 @@ const Footer = () => {
         All rights reserved
       </Typography.Title>
       <Space>
-        <Link to={Paths.HomPage}>Home</Link>
-        <Link to={Paths.Exchanges}>Exchange</Link>
-        <Link to={Paths.News}>News</Link>
+        <Link to={makeLinkTo(Paths.HomePage)}>Home</Link>
+        <Link to={makeLinkTo(Paths.Exchanges)}>Exchange</Link>
+        <Link to={makeLinkTo(Paths.News)}>News</Link>
       </Space>
     </div>
   );
