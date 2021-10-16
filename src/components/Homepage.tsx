@@ -5,6 +5,7 @@ import millify from "millify";
 import { Link } from 'react-router-dom';
 import {Cryptocurrencies, News} from "./index";
 import {makeLinkTo, Paths} from "../config/routes";
+import Loader from "./layouts/Loader";
 
 type Props = {};
 
@@ -26,7 +27,7 @@ const Homepage = (props: Props) => {
     }
   }, [fetchedCryptos])
 
-  if (isFetching) return <div>'loading...'</div>;
+  if (isFetching) return <Loader/>;
 
   return (
     <>

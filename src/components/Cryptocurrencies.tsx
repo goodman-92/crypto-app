@@ -4,6 +4,7 @@ import {Card, Col, Input, Row} from "antd";
 import {Link} from 'react-router-dom';
 import millify from "millify";
 import {makeLinkTo, Paths} from "../config/routes";
+import Loader from "./layouts/Loader";
 
 type Props = {
   simplified?: boolean
@@ -21,7 +22,7 @@ const Cryptocurrencies = ({simplified = false}: Props) => {
 
   }, [fetchData, searchWord]);
 
-  if (isFetching || !cryptos) return <div>"Loading ..."</div>;
+  if (isFetching || !cryptos) return <Loader/>;
 
   const handleSearchWord = (e: React.FormEvent<HTMLInputElement>) => setSearchWord(e.currentTarget.value);
 

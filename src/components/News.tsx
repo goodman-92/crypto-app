@@ -4,6 +4,7 @@ import {useGetNewsQuery} from "../services/newsApi";
 import dayjs from "dayjs";
 import RelativeTime from "dayjs/plugin/relativeTime"
 import {useGetCryptosQuery} from "../services/cryptoApi";
+import Loader from "./layouts/Loader";
 
 dayjs.extend(RelativeTime);
 
@@ -27,7 +28,7 @@ const News = ({simplified = false}: Props) => {
   });
 
 
-  if (isFetching || !fetchedNews?.value) return <div>Loading</div>;
+  if (isFetching || !fetchedNews?.value) return <Loader/>;
 
   const handleCategory = (value: any) => setSelectedCategory(value);
   

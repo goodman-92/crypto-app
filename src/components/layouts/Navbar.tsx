@@ -6,7 +6,7 @@ import {makeLinkTo, Paths} from "../../config/routes";
 import {useEffect, useState} from "react";
 
 const Navbar = (props: any) => {
-  const [activeMenu, setActiveMenu] = useState(true);
+  const [activeMenu, setActiveMenu] = useState(false);
   const [screenSize, setScreenSize] = useState<number | null>(null);
 
   useEffect(() => {

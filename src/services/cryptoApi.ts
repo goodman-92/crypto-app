@@ -96,6 +96,31 @@ interface CoinHistoryResponse extends Response {
   }
 }
 
+interface ExchangesResponse  extends Response{
+  data: {
+    currencies: { iconUrl: string, id: number, sign: string, symbol: string, type: string, uuid: string }[],
+    exchanges: {
+      description: string,
+      iconUrl: string,
+      id: number,
+      lastTickerCreatedAt: number,
+      marketShare: number,
+      name: string,
+      numberOfMarkets: number,
+      rank: number,
+      uuid: string,
+      verified: boolean,
+      volume: number,
+      websiteUrl: string
+    }[],
+    stats: {
+      limit: number,
+      offset: number,
+      total: number
+    }
+  }
+}
+
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({baseUrl}),
@@ -108,6 +133,9 @@ export const cryptoApi = createApi({
     }),
     getCryptoHistory: builder.query<CoinHistoryResponse, { coinId?: string, timePeriod: string }>({
       query: ({coinId, timePeriod}) => createRequest(`/coin/${coinId}/history/${timePeriod}`)
+    }) ,
+    getExchanges: builder.query<ExchangesResponse, any>({
+      query: ({count}) => createRequest(`/exchanges`)
     })
   })
 });
@@ -115,5 +143,6 @@ export const cryptoApi = createApi({
 export const {
   useGetCryptosQuery,
   useGetCryptosDetailsQuery,
-  useGetCryptoHistoryQuery
+  useGetCryptoHistoryQuery,
+  useGetExchangesQuery
 } = cryptoApi

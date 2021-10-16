@@ -7,6 +7,7 @@ import StatsArticle from "./partial/StatsArticle";
 import OtherArticle from "./partial/OtherArticle";
 import HTMLReactParser from "html-react-parser";
 import LineChart from "../LineChart";
+import Loader from "../layouts/Loader";
 
 type Props = {};
 const {Title} = Typography;
@@ -21,7 +22,7 @@ const CryptoDetails = (props: Props) => {
   const { data: coinHistory} = useGetCryptoHistoryQuery({coinId, timePeriod})
   const coinDetails = fetchedCoin?.data?.coin;
 
-  if (isFetching || !fetchedCoin || !coinDetails) return <div>Loading</div>
+  if (isFetching || !fetchedCoin || !coinDetails) return <Loader/>;
 
   const time: Time[] = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
