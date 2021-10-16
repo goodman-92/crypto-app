@@ -18,7 +18,7 @@ const CryptoDetails = (props: Props) => {
   const [timePeriod, setTimePeriod] = useState<Time>('7d');
 
   const {isFetching, data: fetchedCoin} = useGetCryptosDetailsQuery({coinId})
-  const {isFetching: isFetchingHistory, data: coinHistory} = useGetCryptoHistoryQuery({coinId, timePeriod})
+  const { data: coinHistory} = useGetCryptoHistoryQuery({coinId, timePeriod})
   const coinDetails = fetchedCoin?.data?.coin;
 
   if (isFetching || !fetchedCoin || !coinDetails) return <div>Loading</div>
@@ -44,7 +44,10 @@ const CryptoDetails = (props: Props) => {
       >
         {time.map((date) => (<Select.Option key={date} value={date}>{date}</Select.Option>))}
       </Select>
-      <LineChart coinHistory={coinHistory} currentPrice={millify(+coinDetails.price)} coinName={coinDetails.name}/>
+
+      {
+        coinHistory?.data && <LineChart coinHistory={coinHistory.data} currentPrice={millify(+coinDetails.price)} coinName={coinDetails.name}/>
+      }
       <Col className="stats-container">
         <StatsArticle coinDetails={coinDetails}/>
         <OtherArticle coinDetails={coinDetails}/>

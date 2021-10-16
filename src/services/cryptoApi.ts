@@ -87,10 +87,12 @@ interface CoinResponse {
   }
 }
 
+export interface CoinHistory { price: string, timestamp: number }
+
 interface CoinHistoryResponse extends Response {
   data: {
     change: number,
-    history: { price: string, timestamp: number }[]
+    history: CoinHistory[]
   }
 }
 
