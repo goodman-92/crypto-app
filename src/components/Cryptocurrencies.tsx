@@ -35,8 +35,8 @@ const Cryptocurrencies = ({simplified = false}: Props) => {
       }
       <Row gutter={[32, 32]} className='crypto-card-container'>
         {
-          cryptos.map((coin) => (
-            <Col xs={24} sm={12} lg={6} className='crypto-card' key={coin.id}>
+          cryptos.map((coin, index) => (
+            <Col xs={24} sm={12} lg={6} className='crypto-card' key={coin.id + index.toString()}>
               <Link to={makeLinkTo(Paths.CryptoDetails, coin.id.toString())}>
                 <Card title={`${coin.rank}. ${coin.name}`}
                       hoverable
